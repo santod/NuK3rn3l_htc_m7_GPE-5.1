@@ -1251,14 +1251,20 @@ void ddl_vidc_encode_eos_run(struct ddl_client_context *ddl)
 int ddl_vidc_decode_get_avg_time(struct ddl_client_context *ddl)
 {
 	int avg_time = 0;
-	struct ddl_decoder_data *decoder = &(ddl->codec_data.decoder);
-	avg_time = decoder->avg_dec_time;
+	if (ddl > 0)
+	{
+		struct ddl_decoder_data *decoder = &(ddl->codec_data.decoder);
+		avg_time = decoder->avg_dec_time;
+	}
 	return avg_time;
 }
 
 void ddl_vidc_decode_reset_avg_time(struct ddl_client_context *ddl)
 {
-	struct ddl_decoder_data *decoder = &(ddl->codec_data.decoder);
-	decoder->avg_dec_time = 0;
-	decoder->dec_time_sum = 0;
+	if (ddl > 0)
+	{
+		struct ddl_decoder_data *decoder = &(ddl->codec_data.decoder);
+		decoder->avg_dec_time = 0;
+		decoder->dec_time_sum = 0;
+	}
 }
